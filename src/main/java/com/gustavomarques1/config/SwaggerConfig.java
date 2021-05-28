@@ -25,10 +25,10 @@ public class SwaggerConfig implements WebMvcConfigurer {
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Catálogo de produtos")
-                .description("\"Micro serviço de exemplo\"")
+                .title("Product Catalog")
+                .description("Microservice example by gustavomarques1")
                 .version("1.0.0")
-                .license("MIT").build();
+                .build();
     }
 
     @Override

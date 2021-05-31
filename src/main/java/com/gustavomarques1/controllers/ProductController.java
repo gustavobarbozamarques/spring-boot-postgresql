@@ -1,6 +1,6 @@
 package com.gustavomarques1.controllers;
 
-import com.gustavomarques1.model.response.GetAllProductsResponse;
+import com.gustavomarques1.dto.SimpleProductDTO;
 import com.gustavomarques1.services.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -27,11 +27,11 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Get all products")
+    @ApiOperation("List products")
     @ApiResponses({
             @ApiResponse(code = 200, message = "Success")
     })
-    public List<GetAllProductsResponse> getAll(){
+    public List<SimpleProductDTO> list(){
         return productService.getAll();
     }
 }

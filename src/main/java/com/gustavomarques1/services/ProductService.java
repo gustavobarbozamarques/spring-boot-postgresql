@@ -1,6 +1,6 @@
 package com.gustavomarques1.services;
 
-import com.gustavomarques1.model.response.GetAllProductsResponse;
+import com.gustavomarques1.dto.SimpleProductDTO;
 import com.gustavomarques1.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -18,12 +18,12 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final ModelMapper modelMapper;
 
-    public List<GetAllProductsResponse> getAll() {
+    public List<SimpleProductDTO> getAll() {
         //TODO: implementar paginação
 
         return productRepository.findAll()
                 .stream()
-                .map(product -> modelMapper.map(product, GetAllProductsResponse.class))
+                .map(product -> modelMapper.map(product, SimpleProductDTO.class))
                 .collect(Collectors.toList());
     }
 }

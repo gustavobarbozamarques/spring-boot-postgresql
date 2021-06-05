@@ -1,7 +1,7 @@
-package com.gustavomarques1.services;
+package br.com.gustavobarbozamarques.services;
 
-import com.gustavomarques1.dto.SimpleProductDTO;
-import com.gustavomarques1.repositories.ProductRepository;
+import br.com.gustavobarbozamarques.repositories.ProductRepository;
+import br.com.gustavobarbozamarques.dto.SimpleProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;

@@ -1,4 +1,4 @@
-package com.gustavomarques1.dto;
+package br.com.gustavobarbozamarques.dto;
 
 import lombok.Data;
 

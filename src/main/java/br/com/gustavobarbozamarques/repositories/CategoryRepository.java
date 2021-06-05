@@ -1,6 +1,6 @@
-package com.gustavomarques1.repositories;
+package br.com.gustavobarbozamarques.repositories;
 
-import com.gustavomarques1.entities.Category;
+import br.com.gustavobarbozamarques.entities.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface CategoryRepository extends JpaRepository<Category, Integer> {

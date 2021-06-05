@@ -1,4 +1,4 @@
-package com.gustavomarques1.entities;
+package br.com.gustavobarbozamarques.entities;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,14 +16,13 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
-@Table(name = "users")
-public class User {
+@Table(name = "categories")
+public class Category {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    private String email;
+    private String name;
 
-    private String password;
 }

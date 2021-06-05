@@ -18,24 +18,3 @@ insert into products (category_id, description, name, price, id) values (2, 'Sho
 insert into products (category_id, description, name, price, id) values (2, 'Watch Bronze', 'Watch Bronze 300g', 500, 10);
 insert into products (category_id, description, name, price, id) values (2, 'Watch Silver', 'Watch Silver 400g', 700, 11);
 insert into products (category_id, description, name, price, id) values (2, 'Watch Gold', 'Watch Gold 500g', 900, 12);
-
---tags
-insert into tags (name, id) values ('Notebooks', 1);
-insert into products_tags (product_id, tag_id) values (1, 1);
-insert into products_tags (product_id, tag_id) values (2, 1);
-insert into products_tags (product_id, tag_id) values (3, 1);
-
-insert into tags (name, id) values ('Cellphones', 2);
-insert into products_tags (product_id, tag_id) values (4, 2);
-insert into products_tags (product_id, tag_id) values (5, 2);
-insert into products_tags (product_id, tag_id) values (6, 2);
-
-insert into tags (name, id) values ('Shoes', 3);
-insert into products_tags (product_id, tag_id) values (7, 3);
-insert into products_tags (product_id, tag_id) values (8, 3);
-insert into products_tags (product_id, tag_id) values (9, 3);
-
-insert into tags (name, id) values ('Watches', 4);
-insert into products_tags (product_id, tag_id) values (10, 4);
-insert into products_tags (product_id, tag_id) values (11, 4);
-insert into products_tags (product_id, tag_id) values (12, 4);

@@ -1,11 +1,9 @@
-package com.gustavomarques1.mocks;
+package br.com.gustavobarbozamarques.mocks;
 
-import com.gustavomarques1.entities.Category;
-import com.gustavomarques1.entities.Product;
-import com.gustavomarques1.entities.Tag;
+import br.com.gustavobarbozamarques.entities.Category;
+import br.com.gustavobarbozamarques.entities.Product;
 
 import java.math.BigDecimal;
-import java.util.List;
 
 public class ProductMock {
     public static Product get() {
@@ -20,12 +18,6 @@ public class ProductMock {
                                 .name("category 1")
                                 .build()
                 )
-                .tags(List.of(
-                        Tag.builder()
-                                .id(11)
-                                .name("tag 1")
-                                .build()
-                ))
                 .build();
     }
 }

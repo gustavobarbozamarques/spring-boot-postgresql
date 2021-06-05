@@ -1,7 +1,7 @@
-package com.gustavomarques1.controllers;
+package br.com.gustavobarbozamarques.controllers;
 
-import com.gustavomarques1.dto.SimpleProductDTO;
-import com.gustavomarques1.services.ProductService;
+import br.com.gustavobarbozamarques.services.ProductService;
+import br.com.gustavobarbozamarques.dto.SimpleProductDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

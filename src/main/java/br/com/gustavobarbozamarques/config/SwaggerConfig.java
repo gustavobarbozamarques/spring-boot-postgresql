@@ -1,4 +1,4 @@
-package com.gustavomarques1.config;
+package br.com.gustavobarbozamarques.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

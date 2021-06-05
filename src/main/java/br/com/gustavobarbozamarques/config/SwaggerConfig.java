@@ -18,7 +18,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     @Bean
     public Docket api() {
         return new Docket(DocumentationType.SWAGGER_2).select()
-                .apis(RequestHandlerSelectors.basePackage("com.gustavomarques1"))
+                .apis(RequestHandlerSelectors.basePackage("br.com.gustavobarbozamarques"))
                 .build()
                 .apiInfo(apiInfo());
     }
@@ -26,7 +26,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Product Catalog")
-                .description("Microservice example by gustavomarques1")
+                .description("Spring Boot JPA example by gustavobarbozamarques")
                 .version("1.0.0")
                 .build();
     }

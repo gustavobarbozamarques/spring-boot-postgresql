@@ -7,8 +7,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Data
@@ -20,7 +20,8 @@ import javax.persistence.Table;
 public class Category {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator = "category_seq_generator")
+    @SequenceGenerator(name = "category_seq_generator", sequenceName = "category_seq", allocationSize = 1)
     private Integer id;
 
     private String name;

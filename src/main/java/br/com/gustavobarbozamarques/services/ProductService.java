@@ -19,7 +19,6 @@ public class ProductService {
     private final ModelMapper modelMapper;
 
     public List<SimpleProductDTO> getAll() {
-        //TODO: implementar paginação
 
         return productRepository.findAll()
                 .stream()

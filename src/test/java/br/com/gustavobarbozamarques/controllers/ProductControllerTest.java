@@ -1,6 +1,6 @@
 package br.com.gustavobarbozamarques.controllers;
 
-import br.com.gustavobarbozamarques.mocks.ProductDTOMock;
+import br.com.gustavobarbozamarques.mocks.ProductRequestDTOMock;
 import br.com.gustavobarbozamarques.services.ProductService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
@@ -30,7 +30,7 @@ public class ProductControllerTest {
 
     @Test
     public void shouldReturnSuccessIfValid() throws Exception {
-        var productDTO = ProductDTOMock.get();
+        var productDTO = ProductRequestDTOMock.get();
 
         this.mockMvc
                 .perform(
@@ -44,7 +44,7 @@ public class ProductControllerTest {
 
     @Test
     public void shouldReturnBadRequestIfMissingName() throws Exception {
-        var productDTO = ProductDTOMock.get();
+        var productDTO = ProductRequestDTOMock.get();
         productDTO.setName(null);
 
         this.mockMvc
@@ -59,7 +59,7 @@ public class ProductControllerTest {
 
     @Test
     public void shouldReturnBadRequestIfMissingDescription() throws Exception {
-        var productDTO = ProductDTOMock.get();
+        var productDTO = ProductRequestDTOMock.get();
         productDTO.setDescription(null);
 
         this.mockMvc
@@ -74,7 +74,7 @@ public class ProductControllerTest {
 
     @Test
     public void shouldReturnBadRequestIfMissingPrice() throws Exception {
-        var productDTO = ProductDTOMock.get();
+        var productDTO = ProductRequestDTOMock.get();
         productDTO.setPrice(null);
 
         this.mockMvc
@@ -89,7 +89,7 @@ public class ProductControllerTest {
 
     @Test
     public void shouldReturnBadRequestIfInvalidPrice() throws Exception {
-        var productDTO = ProductDTOMock.get();
+        var productDTO = ProductRequestDTOMock.get();
         productDTO.setPrice(new BigDecimal("-1.00"));
 
         this.mockMvc

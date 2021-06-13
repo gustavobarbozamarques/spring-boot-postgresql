@@ -12,11 +12,11 @@ docker run --name local-postgres -p 5432:5432 -e POSTGRES_PASSWORD=mysecretpassw
 
 ### Run project
 
-```
-./gradlew bootRun
-```
+Run ``` ./gradlew bootRun ``` and access: ``` http://localhost:8080/v1/products ``` 
 
 
-### Endpoints
+### Swagger
 
-work in progress ...
+Access: ``` http://localhost:8080/swagger-ui.html ```
+
+![Alt text](doc/swagger.png?raw=true "Swagger")

@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 
 @Data
 @Builder
-public class ProductDTO {
+public class ProductRequestDTO {
     @NotBlank(message = "Name cannot be blank.")
     private String name;
 
@@ -23,6 +23,6 @@ public class ProductDTO {
     private BigDecimal price;
 
     @NotNull(message = "CategoryId cannot be null.")
-    @Min(value = 0, message = "Invalid categoryId value.")
+    @Min(value = 1, message = "Invalid categoryId value.")
     private Integer categoryId;
 }

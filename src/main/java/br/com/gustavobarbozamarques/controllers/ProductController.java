@@ -1,24 +1,26 @@
 package br.com.gustavobarbozamarques.controllers;
 
-import br.com.gustavobarbozamarques.dto.ProductDTO;
-import br.com.gustavobarbozamarques.dto.SimpleProductDTO;
+import br.com.gustavobarbozamarques.dto.ProductRequestDTO;
+import br.com.gustavobarbozamarques.dto.ProductResponseDTO;
 import br.com.gustavobarbozamarques.services.ProductService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.List;
 import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import java.util.List;
 
 @Api(tags = "Product Catalog")
 @RestController
@@ -31,21 +33,43 @@ public class ProductController {
 
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("List products.")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "Success")
-    })
-    public List<SimpleProductDTO> list() {
+    @ApiOperation("Get all products.")
+    public List<ProductResponseDTO> getAll() {
         return productService.getAll();
+    }
+
+    @GetMapping("/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Get product by id.")
+    public ProductResponseDTO getById(
+            @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
+    ) {
+        return productService.getById(productId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Save new product.")
-    @ApiResponses({
-            @ApiResponse(code = 200, message = "Success")
-    })
-    public void save(@Valid @RequestBody ProductDTO productDTO) {
-        productService.save(productDTO);
+    public void save(@Valid @RequestBody ProductRequestDTO productRequestDTO) {
+        productService.save(null, productRequestDTO);
+    }
+
+    @PutMapping("/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Update product by id.")
+    public void update(
+            @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId,
+            @Valid @RequestBody ProductRequestDTO productRequestDTO
+    ) {
+        productService.save(productId, productRequestDTO);
+    }
+
+    @DeleteMapping("/{productId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Delete product by id.")
+    public void delete(
+            @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
+    ) {
+        productService.delete(productId);
     }
 }

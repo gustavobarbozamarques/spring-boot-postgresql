@@ -32,10 +32,17 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
+    public List<ProductResponseDTO> getAllByCategory(Integer categoryId) {
+        return productRepository.findByCategoryId(categoryId)
+                .stream()
+                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
+                .collect(Collectors.toList());
+    }
+
     public ProductResponseDTO getById(Integer productId) {
         var product = productRepository
                 .findById(productId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ProductId not found."));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."));
 
         var productResponseDTO = modelMapper.map(product, ProductResponseDTO.class);
         productResponseDTO.setCategoryId(product.getCategory().getId());
@@ -58,7 +65,7 @@ public class ProductService {
     public void delete(Integer productId) {
         var product = productRepository
                 .findById(productId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "ProductId not found."));
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."));
 
         productRepository.delete(product);
     }

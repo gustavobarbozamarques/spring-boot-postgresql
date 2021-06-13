@@ -19,4 +19,4 @@ Run ``` ./gradlew bootRun ``` and access: ``` http://localhost:8080/v1/products 
 
 Access: ``` http://localhost:8080/swagger-ui.html ```
 
-![Alt text](doc/swagger_print.png?raw=true "Swagger")
+![Alt text](doc/swagger.png?raw=true "Swagger")

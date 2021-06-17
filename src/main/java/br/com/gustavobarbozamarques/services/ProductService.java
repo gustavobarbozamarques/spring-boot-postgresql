@@ -6,7 +6,6 @@ import br.com.gustavobarbozamarques.entities.Product;
 import br.com.gustavobarbozamarques.repositories.CategoryRepository;
 import br.com.gustavobarbozamarques.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -18,7 +17,6 @@ import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
-@Slf4j
 public class ProductService {
 
     private final CategoryRepository categoryRepository;
@@ -32,7 +30,7 @@ public class ProductService {
                 .collect(Collectors.toList());
     }
 
-    public List<ProductResponseDTO> getAllByCategory(Integer categoryId) {
+    public List<ProductResponseDTO> getByCategory(Integer categoryId) {
         return productRepository.findByCategoryId(categoryId)
                 .stream()
                 .map(product -> modelMapper.map(product, ProductResponseDTO.class))

@@ -38,15 +38,6 @@ public class ProductController {
         return productService.getAll();
     }
 
-    @GetMapping("/category/{categoryId}")
-    @ResponseStatus(HttpStatus.OK)
-    @ApiOperation("Get products by category.")
-    public List<ProductResponseDTO> getByCategory(
-            @Valid @PathVariable("categoryId") @Min(value = 1, message = "Invalid categoryId value.") Integer categoryId
-    ) {
-        return productService.getAllByCategory(categoryId);
-    }
-
     @GetMapping("/{productId}")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Get product by id.")
@@ -54,6 +45,15 @@ public class ProductController {
             @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
     ) {
         return productService.getById(productId);
+    }
+
+    @GetMapping("/category/{categoryId}")
+    @ResponseStatus(HttpStatus.OK)
+    @ApiOperation("Get products by category.")
+    public List<ProductResponseDTO> getByCategory(
+            @Valid @PathVariable("categoryId") @Min(value = 1, message = "Invalid categoryId value.") Integer categoryId
+    ) {
+        return productService.getByCategory(categoryId);
     }
 
     @PostMapping

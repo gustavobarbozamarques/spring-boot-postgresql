@@ -23,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @WebMvcTest(ProductController.class)
-public class ProductControllerTest {
+class ProductControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -35,7 +35,7 @@ public class ProductControllerTest {
     private ObjectMapper objectMapper;
 
     @Test
-    public void testGetAllShouldReturnSuccessIfFound() throws Exception {
+    void testGetAllShouldReturnSuccessIfFound() throws Exception {
         var productList = List.of(ProductResponseDTOMock.get());
         when(productService.getAll()).thenReturn(productList);
         this.mockMvc
@@ -46,7 +46,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testGetByIdShouldReturnSuccessIfFound() throws Exception {
+    void testGetByIdShouldReturnSuccessIfFound() throws Exception {
         var product = ProductResponseDTOMock.get();
         when(productService.getById(product.getId())).thenReturn(product);
         this.mockMvc
@@ -57,7 +57,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testGetByIdShouldReturnNotFoundIfNotExists() throws Exception {
+    void testGetByIdShouldReturnNotFoundIfNotExists() throws Exception {
         var product = ProductResponseDTOMock.get();
         when(productService.getById(product.getId()))
                 .thenThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."));
@@ -68,7 +68,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testGetByCategoryShouldReturnSucessIfFound() throws Exception {
+    void testGetByCategoryShouldReturnSucessIfFound() throws Exception {
         var productList = List.of(ProductResponseDTOMock.get());
         var categoryId = productList.get(0).getCategoryId();
         when(productService.getByCategory(categoryId)).thenReturn(productList);
@@ -80,7 +80,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testSaveShouldReturnSuccessIfValid() throws Exception {
+    void testSaveShouldReturnSuccessIfValid() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         this.mockMvc
                 .perform(
@@ -93,7 +93,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testSaveShouldReturnBadRequestIfMissingRequiredFields() throws Exception {
+    void testSaveShouldReturnBadRequestIfMissingRequiredFields() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         productDTO.setName(null);
         productDTO.setDescription(null);
@@ -109,7 +109,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testSaveShouldReturnBadRequestIfInvalidCategoryId() throws Exception {
+    void testSaveShouldReturnBadRequestIfInvalidCategoryId() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         doThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid categoryId."))
                 .when(productService)
@@ -125,7 +125,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testUpdateShouldReturnSuccessIfValid() throws Exception {
+    void testUpdateShouldReturnSuccessIfValid() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         this.mockMvc
                 .perform(
@@ -138,7 +138,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testUpdateShouldReturnBadRequestIfMissingRequiredFields() throws Exception {
+    void testUpdateShouldReturnBadRequestIfMissingRequiredFields() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         productDTO.setName(null);
         productDTO.setDescription(null);
@@ -154,7 +154,7 @@ public class ProductControllerTest {
     }
 
     @Test
-    public void testUpdateShouldReturnBadRequestIfInvalidCategoryId() throws Exception {
+    void testUpdateShouldReturnBadRequestIfInvalidCategoryId() throws Exception {
         var productDTO = ProductRequestDTOMock.get();
         doThrow(new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid categoryId."))
                 .when(productService)
@@ -168,5 +168,4 @@ public class ProductControllerTest {
                 .andDo(print())
                 .andExpect(status().isBadRequest());
     }
-
 }

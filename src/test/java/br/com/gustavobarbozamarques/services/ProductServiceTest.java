@@ -1,15 +1,14 @@
 package br.com.gustavobarbozamarques.services;
 
-import br.com.gustavobarbozamarques.config.ModelMapperConfig;
 import br.com.gustavobarbozamarques.entities.Product;
 import br.com.gustavobarbozamarques.mocks.CategoryMock;
 import br.com.gustavobarbozamarques.mocks.ProductMock;
 import br.com.gustavobarbozamarques.mocks.ProductRequestDTOMock;
 import br.com.gustavobarbozamarques.repositories.CategoryRepository;
 import br.com.gustavobarbozamarques.repositories.ProductRepository;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.web.server.ResponseStatusException;
@@ -31,13 +30,8 @@ class ProductServiceTest {
     @Mock
     private ProductRepository productRepository;
 
+    @InjectMocks
     private ProductService productService;
-
-    @BeforeEach
-    public void setup() {
-        var modelMapper = new ModelMapperConfig().modelMapper();
-        productService = new ProductService(categoryRepository, productRepository, modelMapper);
-    }
 
     @Test
     void testGetAll() {

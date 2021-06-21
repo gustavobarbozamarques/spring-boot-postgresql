@@ -1,5 +1,6 @@
 package br.com.gustavobarbozamarques.dto;
 
+import br.com.gustavobarbozamarques.entities.Product;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -17,4 +18,14 @@ public class ProductResponseDTO {
     private String description;
     private BigDecimal price;
     private Integer categoryId;
+
+    public static ProductResponseDTO from(Product product) {
+        return ProductResponseDTO.builder()
+                .id(product.getId())
+                .name(product.getName())
+                .description(product.getDescription())
+                .price(product.getPrice())
+                .categoryId(product.getCategory().getId())
+                .build();
+    }
 }

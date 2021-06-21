@@ -1,5 +1,6 @@
 package br.com.gustavobarbozamarques.dto;
 
+import br.com.gustavobarbozamarques.entities.Product;
 import lombok.Builder;
 import lombok.Data;
 
@@ -25,4 +26,12 @@ public class ProductRequestDTO {
     @NotNull(message = "CategoryId cannot be null.")
     @Min(value = 1, message = "Invalid categoryId value.")
     private Integer categoryId;
+
+    public static Product from(ProductRequestDTO request) {
+        return Product.builder()
+                .name(request.getName())
+                .description(request.getDescription())
+                .price(request.getPrice())
+                .build();
+    }
 }

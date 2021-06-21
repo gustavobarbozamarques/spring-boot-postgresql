@@ -2,11 +2,9 @@ package br.com.gustavobarbozamarques.services;
 
 import br.com.gustavobarbozamarques.dto.ProductRequestDTO;
 import br.com.gustavobarbozamarques.dto.ProductResponseDTO;
-import br.com.gustavobarbozamarques.entities.Product;
 import br.com.gustavobarbozamarques.repositories.CategoryRepository;
 import br.com.gustavobarbozamarques.repositories.ProductRepository;
 import lombok.AllArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -21,19 +19,18 @@ public class ProductService {
 
     private final CategoryRepository categoryRepository;
     private final ProductRepository productRepository;
-    private final ModelMapper modelMapper;
 
     public List<ProductResponseDTO> getAll() {
         return productRepository.findAll()
                 .stream()
-                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
+                .map(ProductResponseDTO::from)
                 .collect(Collectors.toList());
     }
 
     public List<ProductResponseDTO> getByCategory(Integer categoryId) {
         return productRepository.findByCategoryId(categoryId)
                 .stream()
-                .map(product -> modelMapper.map(product, ProductResponseDTO.class))
+                .map(ProductResponseDTO::from)
                 .collect(Collectors.toList());
     }
 
@@ -41,10 +38,7 @@ public class ProductService {
         var product = productRepository
                 .findById(productId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."));
-
-        var productResponseDTO = modelMapper.map(product, ProductResponseDTO.class);
-        productResponseDTO.setCategoryId(product.getCategory().getId());
-        return productResponseDTO;
+        return ProductResponseDTO.from(product);
     }
 
 
@@ -53,7 +47,7 @@ public class ProductService {
                 .findById(productRequestDTO.getCategoryId())
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.BAD_REQUEST, "Invalid categoryId."));
 
-        var product = modelMapper.map(productRequestDTO, Product.class);
+        var product = ProductRequestDTO.from(productRequestDTO);
         product.setId(productId);
         product.setCategory(category);
         product.setUpdatedAt(LocalDateTime.now());
@@ -64,7 +58,6 @@ public class ProductService {
         var product = productRepository
                 .findById(productId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."));
-
         productRepository.delete(product);
     }
 }

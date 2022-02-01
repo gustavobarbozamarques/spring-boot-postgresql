@@ -26,7 +26,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title("Product Catalog")
-                .description("Spring Boot JPA example by gustavobarbozamarques")
+                .description("Spring Boot PostgreSQL example by gustavobarbozamarques")
                 .version("1.0.0")
                 .build();
     }

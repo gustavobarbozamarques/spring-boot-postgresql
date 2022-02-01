@@ -6,6 +6,6 @@ RUN gradle build
 FROM openjdk:11-jre-slim
 ENV VERSION=0.0.1-SNAPSHOT
 CMD mkdir /app
-COPY --from=builder /home/src/build/libs/spring-boot-jpa-postgresql-${VERSION}.jar /app.jar
+COPY --from=builder /home/src/build/libs/spring-boot-postgresql-${VERSION}.jar /app.jar
 EXPOSE 8080
 ENTRYPOINT java -jar /app.jar

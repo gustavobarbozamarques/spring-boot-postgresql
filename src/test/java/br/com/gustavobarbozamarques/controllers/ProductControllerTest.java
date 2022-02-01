@@ -57,6 +57,26 @@ class ProductControllerTest {
     }
 
     @Test
+    void testGetByIdShouldBadRequestIfWrongId() throws Exception {
+        var product = ProductResponseDTOMock.get();
+        when(productService.getById(product.getId())).thenReturn(product);
+        this.mockMvc
+                .perform(get(String.format("/v1/products/%s", "INVALID_ID")))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testGetByIdShouldBadRequestIfZeroId() throws Exception {
+        var product = ProductResponseDTOMock.get();
+        when(productService.getById(product.getId())).thenReturn(product);
+        this.mockMvc
+                .perform(get(String.format("/v1/products/%d", 0)))
+                .andDo(print())
+                .andExpect(status().isBadRequest());
+    }
+
+    @Test
     void testGetByIdShouldReturnNotFoundIfNotExists() throws Exception {
         var product = ProductResponseDTOMock.get();
         when(productService.getById(product.getId()))
@@ -167,5 +187,30 @@ class ProductControllerTest {
                 )
                 .andDo(print())
                 .andExpect(status().isBadRequest());
+    }
+
+    @Test
+    void testDeleteShouldReturnSuccessIfValid() throws Exception {
+        var productDTO = ProductRequestDTOMock.get();
+        this.mockMvc
+                .perform(
+                        delete("/v1/products/1")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(objectMapper.writeValueAsString(productDTO))
+                )
+                .andDo(print())
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void testDeleteShouldReturnNotFoundIfNotExists() throws Exception {
+        var product = ProductResponseDTOMock.get();
+        doThrow(new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found."))
+                .when(productService)
+                .delete(product.getId());
+        this.mockMvc
+                .perform(delete(String.format("/v1/products/%d", product.getId())))
+                .andDo(print())
+                .andExpect(status().isNotFound());
     }
 }

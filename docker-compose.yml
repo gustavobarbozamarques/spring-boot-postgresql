@@ -2,10 +2,10 @@ version: '3'
 
 services:
   app:
-    image: 'spring-boot-jpa-postgresql'
+    image: 'spring-boot-postgresql'
     build:
       context: .
-    container_name: spring-boot-jpa-postgresql
+    container_name: spring-boot-postgresql
     ports:
       - 8080:8080
     depends_on:
@@ -15,7 +15,7 @@ services:
       - DB_USERNAME=postgres
       - DB_PASSWORD=postgres
     networks:
-      - spring-boot-jpa-postgresql-network
+      - spring-boot-postgresql-network
 
   db:
     image: 'postgres:13.1-alpine'
@@ -26,15 +26,15 @@ services:
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
     networks:
-      - spring-boot-jpa-postgresql-network
+      - spring-boot-postgresql-network
 
   sonarqube:
     image: 'sonarqube'
     ports:
       - 9000:9000
     networks:
-      - spring-boot-jpa-postgresql-network
+      - spring-boot-postgresql-network
 
 networks:
-  spring-boot-jpa-postgresql-network:
+  spring-boot-postgresql-network:
     driver: bridge

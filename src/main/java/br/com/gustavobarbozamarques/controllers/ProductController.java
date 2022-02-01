@@ -42,7 +42,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Get product by id.")
     public ProductResponseDTO getById(
-            @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
+            @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
     ) {
         return productService.getById(productId);
     }
@@ -51,7 +51,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Get products by category.")
     public List<ProductResponseDTO> getByCategory(
-            @Valid @PathVariable("categoryId") @Min(value = 1, message = "Invalid categoryId value.") Integer categoryId
+            @PathVariable("categoryId") @Min(value = 1, message = "Invalid categoryId value.") Integer categoryId
     ) {
         return productService.getByCategory(categoryId);
     }
@@ -67,7 +67,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Update product by id.")
     public void update(
-            @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId,
+            @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId,
             @Valid @RequestBody ProductRequestDTO productRequestDTO
     ) {
         productService.save(productId, productRequestDTO);
@@ -77,7 +77,7 @@ public class ProductController {
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation("Delete product by id.")
     public void delete(
-            @Valid @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
+            @PathVariable("productId") @Min(value = 1, message = "Invalid productId value.") Integer productId
     ) {
         productService.delete(productId);
     }

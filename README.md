@@ -1,10 +1,11 @@
-# Spring Boot JPA
+# Spring Boot PostgreSQL
 
-This project demonstrates a simple microservice that uses Spring Boot and JPA with the PostgreSQL database.
+This project demonstrates a simple microservice that uses Spring Boot and PostgreSQL database.
 
 ### Run project
 
 ``` docker-compose build ```
+
 ``` docker-compose up ``` 
 
 And access: ``` http://localhost:8080/v1/products ``` 

@@ -1,0 +1,8 @@
+package br.com.gustavobarbozamarques.repositories;
+
+import br.com.gustavobarbozamarques.entities.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface UserRepository extends JpaRepository<User, Integer> {
+    User findByEmail(String email);
+}

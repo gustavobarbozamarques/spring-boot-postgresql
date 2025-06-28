@@ -10,3 +10,8 @@ insert into products (category_id, description, name, price, id) values (1, 'Not
 insert into products (category_id, description, name, price, id) values (2, 'Watch Bronze', 'Watch Bronze 300g', 500, nextval('product_seq'));
 insert into products (category_id, description, name, price, id) values (2, 'Watch Silver', 'Watch Silver 400g', 700, nextval('product_seq'));
 insert into products (category_id, description, name, price, id) values (2, 'Watch Gold', 'Watch Gold 500g', 900, nextval('product_seq'));
+
+--users
+insert into users (name, email, password, id) values ('John Doe', 'john.doe@example.com', 'password123', nextval('user_seq'));
+insert into users (name, email, password, id) values ('Jane Smith', 'jane.smith@example.com', 'securepass', nextval('user_seq'));
+insert into users (name, email, password, id) values ('Peter Jones', 'peter.jones@example.com', 'mysecret', nextval('user_seq'));
